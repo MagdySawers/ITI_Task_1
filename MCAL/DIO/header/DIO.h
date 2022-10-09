@@ -28,16 +28,17 @@ typedef struct
 	u8 port;
 	u8 pin;
 	u8 direction;
+	u8 state;
 	u8 error;
-}pin;
+}DIO_cfg;
 
 
 
-void DIO_SetPinDirection (pin* mypin);
-void DIO_GetPinValue (pin* mypin,u8* value);
-void DIO_SetPinValue (pin* mypin,u8 value);
-void DIO_PinToggle (pin* mypin);
-void DIO_PinPullUp (pin* mypin);
+void DIO_SetPinDirection (DIO_cfg * DioConfig);
+void DIO_GetPinValue (DIO_cfg * DioConfig);
+void DIO_SetPinValue (DIO_cfg * DioConfig);
+void DIO_PinToggle (DIO_cfg * DioConfig);
+void DIO_PinPullUp (DIO_cfg * DioConfig);
 
 
 #endif /* DIO_INTERFACE_H_ */

@@ -6,123 +6,43 @@
  */
 #include "../header/DIO.h"
 
-void DIO_SetPinDirection (pin* mypin)
+void DIO_SetPinDirection (DIO_cfg * DioConfig)
 {
-	if (mypin->direction == INPUT)
+	PORTx * PORT_t = (PORTx *)(DioConfig->port);
+
+	if (DioConfig->direction == INPUT)
 	{
-		switch(mypin->port)
-		{
-		case PORTA:
-			CLR_BIT(DDRA, mypin->pin);
-			break;
-		case PORTB:
-			CLR_BIT(DDRB, mypin->pin);
-			break;
-		case PORTC:
-			CLR_BIT(DDRC, mypin->pin);
-			break;
-		case PORTD:
-			CLR_BIT(DDRD, mypin->pin);
-			break;
-		default :
-			mypin->error = FAILED;
-			break;
-		}
+		CLR_BIT(&(PORT_t->DDR), DioConfig->pin);
 	}
-	else if(mypin->direction == OUTPUT)
+	else if(DioConfig->direction == OUTPUT)
 	{
-		switch(mypin->port)
-			{
-			case PORTA:
-				SET_BIT(DDRA, mypin->pin);
-				break;
-			case PORTB:
-				SET_BIT(DDRB, mypin->pin);
-				break;
-			case PORTC:
-				SET_BIT(DDRC, mypin->pin);
-				break;
-			case PORTD:
-				SET_BIT(DDRD, mypin->pin);
-				break;
-			default :
-				mypin->error = FAILED;
-				break;
-			}
+		SET_BIT(&(PORT_t->DDR), DioConfig->pin);
 	}
 	else
 	{
-		mypin->error = FAILED;
+		DioConfig->error = FAILED;
 	}
 }
-void DIO_GetPinValue (pin* mypin,u8* value)
+void DIO_GetPinValue (DIO_cfg * DioConfig)
 {
-	switch(mypin->port)
-			{
-			case PORTA:
-				*value = READ_BIT(PINA, mypin->pin);
-				break;
-			case PORTB:
-				*value = READ_BIT(PINB, mypin->pin);
-				break;
-			case PORTC:
-				*value = READ_BIT(PINC, mypin->pin);
-				break;
-			case PORTD:
-				*value = READ_BIT(PIND, mypin->pin);
-				break;
-			default :
-				mypin->error = FAILED;
-				break;
-			}
+	PORTx * PORT_t = (PORTx *)(DioConfig->port);
+	DioConfig->state = READ_BIT(&(PORT_t->PIN), DioConfig->pin);
 }
-void DIO_SetPinValue (pin* mypin,u8 value)
+
+void DIO_SetPinValue (DIO_cfg * DioConfig)
 {
-	if (value == HIGH)
+	PORTx * PORT_t = (PORTx *)(DioConfig->port);
+	if (DioConfig->state == HIGH)
 	{
-		switch(mypin->port)
-		{
-		case PORTA:
-			SET_BIT(PORTA, mypin->pin);
-			break;
-		case PORTB:
-			SET_BIT(PORTB, mypin->pin);
-			break;
-		case PORTC:
-			SET_BIT(PORTC, mypin->pin);
-			break;
-		case PORTD:
-			SET_BIT(PORTD, mypin->pin);
-			break;
-		default :
-			mypin->error = FAILED;
-			break;
-		}
+		SET_BIT(&(PORT_t->PORT), DioConfig->pin);
 	}
-	else if(value == LOW)
+	else if(DioConfig->state == LOW)
 	{
-		switch(mypin->port)
-		{
-		case PORTA:
-			CLR_BIT(PORTA, mypin->pin);
-			break;
-		case PORTB:
-			CLR_BIT(PORTB, mypin->pin);
-			break;
-		case PORTC:
-			CLR_BIT(PORTC, mypin->pin);
-			break;
-		case PORTD:
-			CLR_BIT(PORTD, mypin->pin);
-			break;
-		default :
-			mypin->error = FAILED;
-			break;
-		}
+		CLR_BIT(&(PORT_t->PORT), DioConfig->pin);
 	}
 	else
 	{
-		mypin->error = FAILED;
+		DioConfig->error = FAILED;
 	}
 }
 //void DIO_PinToggle (pin* mypin);

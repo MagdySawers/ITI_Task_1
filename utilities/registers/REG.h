@@ -8,20 +8,19 @@
 #ifndef DIO_REG_H_
 #define DIO_REG_H_
 
-#define PORTA  0x3B
-#define PORTB  0x38
-#define PORTC  0x35
-#define PORTD  0x32
+#include "../Bit math/BitMath.h"
 
-#define DDRA   0x3A
-#define DDRB   0x37
-#define DDRC   0x34
-#define DDRD   0x31
+typedef struct
+{
+	u8 PIN;
+	u8 DDR;
+	u8 PORT;
+}PORTx;
 
-#define PINA   0x39
-#define PINB   0x36
-#define PINC   0x33
-#define PIND   0x30
+#define PORTA   0x39
+#define PORTB   0x36
+#define PORTC   0x33
+#define PORTD   0x30
 
 
 #endif /* DIO_REG_H_ */
