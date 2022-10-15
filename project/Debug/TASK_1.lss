@@ -1,0 +1,277 @@
+
+TASK_1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000180  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000001f4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800060  00800060  000001f4  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000001f4  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000224  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000a0  00000000  00000000  00000260  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000b20  00000000  00000000  00000300  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000078f  00000000  00000000  00000e20  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000516  00000000  00000000  000015af  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000013c  00000000  00000000  00001ac8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003ff  00000000  00000000  00001c04  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000463  00000000  00000000  00002003  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000070  00000000  00000000  00002466  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a1 36       	cpi	r26, 0x61	; 97
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 6d 00 	call	0xda	; 0xda <main>
+  74:	0c 94 be 00 	jmp	0x17c	; 0x17c <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <HDIO_SetPinDirection_vid>:
+ * Created: 10/15/2022 5:52:40 PM
+ *  Author: moust
+ */ 
+#include "../header/HDIO.h"
+void HDIO_SetPinDirection_vid (u8 PORT , u8 PIN , u8 direction)
+{
+  7c:	cf 93       	push	r28
+  7e:	df 93       	push	r29
+  80:	00 d0       	rcall	.+0      	; 0x82 <HDIO_SetPinDirection_vid+0x6>
+  82:	00 d0       	rcall	.+0      	; 0x84 <HDIO_SetPinDirection_vid+0x8>
+  84:	cd b7       	in	r28, 0x3d	; 61
+  86:	de b7       	in	r29, 0x3e	; 62
+	DIO_cfg cfg = {PORT , PIN , direction};
+  88:	19 82       	std	Y+1, r1	; 0x01
+  8a:	1a 82       	std	Y+2, r1	; 0x02
+  8c:	1b 82       	std	Y+3, r1	; 0x03
+  8e:	1c 82       	std	Y+4, r1	; 0x04
+  90:	89 83       	std	Y+1, r24	; 0x01
+  92:	6a 83       	std	Y+2, r22	; 0x02
+  94:	4b 83       	std	Y+3, r20	; 0x03
+	DIO_SetPinDirection(&cfg);
+  96:	ce 01       	movw	r24, r28
+  98:	01 96       	adiw	r24, 0x01	; 1
+  9a:	0e 94 79 00 	call	0xf2	; 0xf2 <DIO_SetPinDirection>
+}
+  9e:	0f 90       	pop	r0
+  a0:	0f 90       	pop	r0
+  a2:	0f 90       	pop	r0
+  a4:	0f 90       	pop	r0
+  a6:	df 91       	pop	r29
+  a8:	cf 91       	pop	r28
+  aa:	08 95       	ret
+
+000000ac <HDIO_ReadPinValue_u8>:
+u8   HDIO_ReadPinValue_u8(u8 PORT , u8 PIN)
+{
+  ac:	cf 93       	push	r28
+  ae:	df 93       	push	r29
+  b0:	00 d0       	rcall	.+0      	; 0xb2 <HDIO_ReadPinValue_u8+0x6>
+  b2:	00 d0       	rcall	.+0      	; 0xb4 <HDIO_ReadPinValue_u8+0x8>
+  b4:	cd b7       	in	r28, 0x3d	; 61
+  b6:	de b7       	in	r29, 0x3e	; 62
+	u8 PinState = 0;
+	DIO_cfg cfg = {PORT , PIN};
+  b8:	19 82       	std	Y+1, r1	; 0x01
+  ba:	1a 82       	std	Y+2, r1	; 0x02
+  bc:	1b 82       	std	Y+3, r1	; 0x03
+  be:	1c 82       	std	Y+4, r1	; 0x04
+  c0:	89 83       	std	Y+1, r24	; 0x01
+  c2:	6a 83       	std	Y+2, r22	; 0x02
+	PinState = DIO_ReadPinValue(&cfg);
+  c4:	ce 01       	movw	r24, r28
+  c6:	01 96       	adiw	r24, 0x01	; 1
+  c8:	0e 94 a5 00 	call	0x14a	; 0x14a <DIO_ReadPinValue>
+	return PinState;
+}
+  cc:	0f 90       	pop	r0
+  ce:	0f 90       	pop	r0
+  d0:	0f 90       	pop	r0
+  d2:	0f 90       	pop	r0
+  d4:	df 91       	pop	r29
+  d6:	cf 91       	pop	r28
+  d8:	08 95       	ret
+
+000000da <main>:
+
+#include "HDIO.h"
+u8 x;
+int main ()
+{
+	HDIO_SetPinDirection_vid (D,5,IN);
+  da:	40 e0       	ldi	r20, 0x00	; 0
+  dc:	65 e0       	ldi	r22, 0x05	; 5
+  de:	80 e3       	ldi	r24, 0x30	; 48
+  e0:	0e 94 3e 00 	call	0x7c	; 0x7c <HDIO_SetPinDirection_vid>
+	DIO_cfg pin = {PORTD , 5};
+	    while (1)
+	    {
+			//x = DIO_ReadPinValue(&pin);
+			x = HDIO_ReadPinValue_u8(D,5);
+  e4:	65 e0       	ldi	r22, 0x05	; 5
+  e6:	80 e3       	ldi	r24, 0x30	; 48
+  e8:	0e 94 56 00 	call	0xac	; 0xac <HDIO_ReadPinValue_u8>
+  ec:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+  f0:	f9 cf       	rjmp	.-14     	; 0xe4 <main+0xa>
+
+000000f2 <DIO_SetPinDirection>:
+	volatile u8 DDR;
+	volatile u8 PORT;
+}PORTx;
+
+void DIO_SetPinDirection (DIO_cfg * DioConfig)
+{
+  f2:	fc 01       	movw	r30, r24
+	PORTx * PORT_t = (PORTx *)(DioConfig->port);
+  f4:	a0 81       	ld	r26, Z
+  f6:	b0 e0       	ldi	r27, 0x00	; 0
+
+	if (DioConfig->direction == INPUT)
+  f8:	82 81       	ldd	r24, Z+2	; 0x02
+  fa:	81 11       	cpse	r24, r1
+  fc:	11 c0       	rjmp	.+34     	; 0x120 <DIO_SetPinDirection+0x2e>
+	{
+		CLR_BIT(&(PORT_t->DDR), DioConfig->pin);
+  fe:	11 96       	adiw	r26, 0x01	; 1
+ 100:	2c 91       	ld	r18, X
+ 102:	11 97       	sbiw	r26, 0x01	; 1
+ 104:	81 e0       	ldi	r24, 0x01	; 1
+ 106:	90 e0       	ldi	r25, 0x00	; 0
+ 108:	01 80       	ldd	r0, Z+1	; 0x01
+ 10a:	02 c0       	rjmp	.+4      	; 0x110 <DIO_SetPinDirection+0x1e>
+ 10c:	88 0f       	add	r24, r24
+ 10e:	99 1f       	adc	r25, r25
+ 110:	0a 94       	dec	r0
+ 112:	e2 f7       	brpl	.-8      	; 0x10c <DIO_SetPinDirection+0x1a>
+ 114:	80 95       	com	r24
+ 116:	82 23       	and	r24, r18
+ 118:	11 96       	adiw	r26, 0x01	; 1
+ 11a:	8c 93       	st	X, r24
+		DioConfig->error = NO_ERR;
+ 11c:	13 82       	std	Z+3, r1	; 0x03
+ 11e:	08 95       	ret
+	}
+	else if(DioConfig->direction == OUTPUT)
+ 120:	81 30       	cpi	r24, 0x01	; 1
+ 122:	81 f4       	brne	.+32     	; 0x144 <DIO_SetPinDirection+0x52>
+	{
+		SET_BIT(&(PORT_t->DDR), DioConfig->pin);
+ 124:	11 96       	adiw	r26, 0x01	; 1
+ 126:	2c 91       	ld	r18, X
+ 128:	11 97       	sbiw	r26, 0x01	; 1
+ 12a:	81 e0       	ldi	r24, 0x01	; 1
+ 12c:	90 e0       	ldi	r25, 0x00	; 0
+ 12e:	01 80       	ldd	r0, Z+1	; 0x01
+ 130:	02 c0       	rjmp	.+4      	; 0x136 <DIO_SetPinDirection+0x44>
+ 132:	88 0f       	add	r24, r24
+ 134:	99 1f       	adc	r25, r25
+ 136:	0a 94       	dec	r0
+ 138:	e2 f7       	brpl	.-8      	; 0x132 <DIO_SetPinDirection+0x40>
+ 13a:	82 2b       	or	r24, r18
+ 13c:	11 96       	adiw	r26, 0x01	; 1
+ 13e:	8c 93       	st	X, r24
+		DioConfig->error = NO_ERR;
+ 140:	13 82       	std	Z+3, r1	; 0x03
+ 142:	08 95       	ret
+	}
+	else
+	{
+		DioConfig->error = FAILED;
+ 144:	81 e0       	ldi	r24, 0x01	; 1
+ 146:	83 83       	std	Z+3, r24	; 0x03
+ 148:	08 95       	ret
+
+0000014a <DIO_ReadPinValue>:
+	}
+}
+u8 DIO_ReadPinValue (DIO_cfg * DioConfig)
+{
+	PORTx * PORT_t = (PORTx *)(DioConfig->port);
+ 14a:	dc 01       	movw	r26, r24
+ 14c:	ec 91       	ld	r30, X
+ 14e:	f0 e0       	ldi	r31, 0x00	; 0
+	return READ_BIT(&(PORT_t->PIN), DioConfig->pin);
+ 150:	40 81       	ld	r20, Z
+ 152:	11 96       	adiw	r26, 0x01	; 1
+ 154:	5c 91       	ld	r21, X
+ 156:	81 e0       	ldi	r24, 0x01	; 1
+ 158:	90 e0       	ldi	r25, 0x00	; 0
+ 15a:	9c 01       	movw	r18, r24
+ 15c:	05 2e       	mov	r0, r21
+ 15e:	02 c0       	rjmp	.+4      	; 0x164 <DIO_ReadPinValue+0x1a>
+ 160:	22 0f       	add	r18, r18
+ 162:	33 1f       	adc	r19, r19
+ 164:	0a 94       	dec	r0
+ 166:	e2 f7       	brpl	.-8      	; 0x160 <DIO_ReadPinValue+0x16>
+ 168:	84 2f       	mov	r24, r20
+ 16a:	90 e0       	ldi	r25, 0x00	; 0
+ 16c:	82 23       	and	r24, r18
+ 16e:	93 23       	and	r25, r19
+ 170:	02 c0       	rjmp	.+4      	; 0x176 <DIO_ReadPinValue+0x2c>
+ 172:	95 95       	asr	r25
+ 174:	87 95       	ror	r24
+ 176:	5a 95       	dec	r21
+ 178:	e2 f7       	brpl	.-8      	; 0x172 <DIO_ReadPinValue+0x28>
+}
+ 17a:	08 95       	ret
+
+0000017c <_exit>:
+ 17c:	f8 94       	cli
+
+0000017e <__stop_program>:
+ 17e:	ff cf       	rjmp	.-2      	; 0x17e <__stop_program>

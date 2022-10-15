@@ -1,8 +1,0 @@
-avrtarget/de.innot.avreclipse.configuration.app.debug.2003730475/ClockFrequency=1000000
-avrtarget/de.innot.avreclipse.configuration.app.debug.2003730475/ExtRAMSize=0
-avrtarget/de.innot.avreclipse.configuration.app.debug.2003730475/ExtendedRAM=false
-avrtarget/de.innot.avreclipse.configuration.app.debug.2003730475/MCUType=atmega32
-avrtarget/de.innot.avreclipse.configuration.app.debug.2003730475/UseEEPROM=false
-avrtarget/de.innot.avreclipse.configuration.app.debug.2003730475/UseExtendedRAMforHeap=true
-avrtarget/perConfig=true
-eclipse.preferences.version=1
