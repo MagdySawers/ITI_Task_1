@@ -4,8 +4,14 @@
  *  Created on: Oct 8, 2022
  *      Author: moust
  */
-#include "../registers/DIO_register.h"
 #include "../header/DIO_interface.h"
+
+typedef struct
+{
+	volatile u8 PIN;
+	volatile u8 DDR;
+	volatile u8 PORT;
+}PORTx;
 
 void DIO_SetPinDirection (DIO_cfg * DioConfig)
 {
@@ -29,8 +35,7 @@ void DIO_SetPinDirection (DIO_cfg * DioConfig)
 u8 DIO_ReadPinValue (DIO_cfg * DioConfig)
 {
 	PORTx * PORT_t = (PORTx *)(DioConfig->port);
-	u8 state = READ_BIT(&(PORT_t->PIN), DioConfig->pin);
-	return state;
+	return READ_BIT(&(PORT_t->PIN), DioConfig->pin);
 }
 
 void DIO_SetPinValue (DIO_cfg * DioConfig,u8 state)

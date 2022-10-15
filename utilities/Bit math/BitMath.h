@@ -14,7 +14,7 @@
 #define SET_BIT(PORT, BIT)      (ADD(PORT)) |= (1 << (BIT))
 #define CLR_BIT(PORT, BIT)      (ADD(PORT)) &= ~(1 << (BIT))
 #define TOGGLE_BIT(PORT, BIT)   (ADD(PORT)) ^= (1 << (BIT))
-#define READ_BIT(PORT, BIT)     (ADD(PORT)) & (1 << (BIT) >> (BIT))
+#define READ_BIT(PORT, BIT)     (((ADD(PORT)) & (1 << (BIT))) >> BIT)
 
 
 #endif /* BITMATH_H_ */

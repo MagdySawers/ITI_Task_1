@@ -11,18 +11,13 @@
 
 #include "../../../utilities/Bit math/BitMath.h"
 #include "../../../utilities/std types/std_types.h"
+#include "../registers/DIO_register.h"
+
 
 #define INPUT  0
 #define OUTPUT 1
 #define HIGH   1
 #define LOW    0
-
-typedef struct
-{
-	u8 PIN;
-	u8 DDR;
-	u8 PORT;
-}PORTx;
 
 typedef enum
 {
