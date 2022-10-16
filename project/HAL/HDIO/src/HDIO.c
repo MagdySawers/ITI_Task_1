@@ -12,10 +12,8 @@ void HDIO_SetPinDirection_vid (u8 PORT , u8 PIN , u8 direction)
 }
 u8   HDIO_ReadPinValue_u8(u8 PORT , u8 PIN)
 {
-	u8 PinState = 0;
 	DIO_cfg cfg = {PORT , PIN};
-	PinState = DIO_ReadPinValue(&cfg);
-	return PinState;
+	return DIO_ReadPinValue(&cfg);
 }
 void HDIO_SetPinValue_vid(u8 PORT , u8 PIN , u8 state)
 {
