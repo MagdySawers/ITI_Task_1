@@ -113,6 +113,13 @@
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\include\</Value>
       <Value>../HAL/HDIO/header</Value>
       <Value>../MCAL/DIO/header</Value>
+      <Value>../HAL/Seven_segment</Value>
+      <Value>../HAL/Seven_segment/Header</Value>
+      <Value>../HAL/Seven_segment/src</Value>
+      <Value>../utilities/Bit math</Value>
+      <Value>../utilities/std types</Value>
+      <Value>../HAL/HDIO/src</Value>
+      <Value>../MCAL/ADC/headers</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
@@ -145,12 +152,18 @@
     <Folder Include="HAL\HDIO" />
     <Folder Include="HAL\HDIO\header" />
     <Folder Include="HAL\HDIO\src" />
+    <Folder Include="HAL\Seven_segment" />
+    <Folder Include="HAL\Seven_segment\Header" />
+    <Folder Include="HAL\Seven_segment\src" />
     <Folder Include="MCAL\" />
+    <Folder Include="MCAL\ADC\headers" />
+    <Folder Include="MCAL\ADC\src" />
     <Folder Include="MCAL\DIO\" />
     <Folder Include="MCAL\DIO\header\" />
     <Folder Include="MCAL\DIO\registers\" />
     <Folder Include="MCAL\DIO\src\" />
     <Folder Include="HAL" />
+    <Folder Include="MCAL\ADC" />
     <Folder Include="utilities\" />
     <Folder Include="utilities\Bit math\" />
     <Folder Include="utilities\std types\" />
@@ -162,7 +175,25 @@
     <Compile Include="HAL\HDIO\src\HDIO.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\Seven_segment\Header\seven_segment.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\Seven_segment\src\seven_segment.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\headers\ADC_config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\headers\ADC_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\headers\ADC_registers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\src\ADC.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\DIO\header\DIO_interface.h">
